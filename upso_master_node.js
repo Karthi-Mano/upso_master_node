@@ -1545,7 +1545,7 @@ app.get('/cart2',(req,res)=>{
 	
 	console.log(req.body);
 
-  var sql = "SELECT * FROM `cart`";
+  var sql = "SELECT * FROM `cart1`";
 console.log('inserted')
 console.log(sql)
 
@@ -1957,6 +1957,46 @@ app.put('/edit_account',(req,res)=>{
      }
      else{
 	  res.setHeader('Content-Type', 'application/json; charset=utf-8');
+      res.send(result);
+    }
+   });
+})
+app.put('/del_image1',(req,res)=>{
+  var sql="SELECT * FROM `products` where `product_id`='"+req.body.product_id+"'";
+   
+    var success = { "status" : "success" };
+  var failed = { "status" : "failed" };
+
+  console.log(sql);
+   con.query(sql,function(err,result){
+    if(err){
+    res.setHeader('Content-Type', 'application/json; charset=utf-8');
+
+    res.send(err);
+     }
+     else{
+    res.setHeader('Content-Type', 'application/json; charset=utf-8');
+
+      res.send(result);
+    }
+   });
+})
+app.get('/del_image',(req,res)=>{
+  var sql="SELECT * FROM `products`";
+   
+    var success = { "status" : "success" };
+  var failed = { "status" : "failed" };
+
+  console.log("login");
+   con.query(sql,function(err,result){
+    if(err){
+    res.setHeader('Content-Type', 'application/json; charset=utf-8');
+   console.log("login");
+    res.send(err);
+     }
+     else{
+   res.setHeader('Content-Type', 'application/json; charset=utf-8');
+
       res.send(result);
     }
    });
